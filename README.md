@@ -5,6 +5,18 @@
 > 1. 利用跨平台编译工具CMake，即只需要一次编写算法代码，就可在多个平台生成对应的算法库；
 > 2. Android开发时基于Java语言而算法库是基于C++语言实现的，因此在Android开发中用Java调用C++算法接口时需要使用JNI(Java Native Interface)来搭建Java与C++之间的沟通桥梁。
 
+- [Android JNI编程笔记](#android-jni编程笔记)
+- [0 Requirements](#0-requirements)
+- [1 Configuration Environment](#1-configuration-environment)
+- [2. 构建JNI工程，进行原生库C++程序开发。](#2-构建jni工程进行原生库c程序开发)
+- [3 代码分析](#3-代码分析)
+- [4 向现有工程中添加自定义类](#4-向现有工程中添加自定义类)
+- [5 在新项目中调用生成的库文件](#5-在新项目中调用生成的库文件)
+- [6 向现有工程中添加第三方库](#6-向现有工程中添加第三方库)
+- [7 将C++中的输出打印到日志中](#7-将c中的输出打印到日志中)
+- [8 读取assets文件夹下文件](#8-读取assets文件夹下文件)
+- [Reference](#reference)
+
 # 0 Requirements
 
 - Android Studio 2021.1.1：Android集成开发环境
