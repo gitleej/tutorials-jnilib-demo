@@ -16,7 +16,7 @@
 
 1. 打开Android Studio，选择File->Settings->Appearance&Behavior->System Settings->Android SDK->SDK Tools。勾选**CMake、NDK、Android SDK Platform-Tools**，如下图所示。
 
-    ![image-20220323110600262](Android JNI编程笔记.assets/image-20220323110600262.png)
+    ![image-20220323110600262](./assets/image-20220323110600262.png)
 
 2. 点击Apply，等待安装完成关闭窗口即可。
 
@@ -24,19 +24,19 @@
 
 1. File->New Project，选择Native C++，表示项目中启用C++支持，然后点击Next进入下一步。
 
-    ![image-20220323112843108](Android JNI编程笔记.assets/image-20220323112843108.png)
+    ![image-20220323112843108](./assets/image-20220323112843108.png)
 
 2. 设置工程名称(Name)、包名(Package name)、项目保存位置(Save location)、编程语言(Language)默认选择Java以及Android SDK的最小版本。设置完成后选择Next进入下一步。如图所示。
 
-    ![image-20220323145448275](Android JNI编程笔记.assets/image-20220323145448275.png)
+    ![image-20220323145448275](./assets/image-20220323145448275.png)
 
 3. 选择支持的C++标准，此处选择C++11，可根据需要选择。点击Finish结束。如图所示。
 
-    ![image-20220323145651944](Android JNI编程笔记.assets/image-20220323145651944.png)
+    ![image-20220323145651944](./assets/image-20220323145651944.png)
 
 4. 切换到Project视图，构建好的工程如下图所示。
 
-    ![image-20220323150545540](Android JNI编程笔记.assets/image-20220323150545540.png)
+    ![image-20220323150545540](./assets/image-20220323150545540.png)
 
 5. 修改app->src->main->cpp-CMakeLists.txt，将project参数改为**tutorialsjni**，将add_library()和target_link_libraries()下的**tutorialsjnilib**改为**${PROJECT_NAME}**，使得生成得动态链接库名称为**libtutorialsjni.so**。
 
@@ -106,23 +106,23 @@
 
 8. 点击build->Make Project，编译工程，在build窗口可查看编译输出信息，编译完成可在app->build->intermediates->cmake->debug->obj看到不同架构下的库文件，文件名为**libtutorialsjni.so**。如下图所示。
 
-    ![image-20220323154250529](Android JNI编程笔记.assets/image-20220323154250529.png)
+    ![image-20220323154250529](./assets/image-20220323154250529.png)
 
 9. 将在Build Variants中将Active Build Variant切换为release，重新编译工程即可生成release版本的动态链接库。
 
-    ![image-20220324171848202](Android JNI编程笔记.assets/image-20220324171848202.png)
+    ![image-20220324171848202](./assets/image-20220324171848202.png)
 
 10. 选择Tools->Device Manager，在Virtual页面点击Create device创建模拟器（此处不详细描述），或在Physical页面下添加物理Android设备，以便于后续调试程序。下图为rk3399开发板。
 
-    ![image-20220323154740146](Android JNI编程笔记.assets/image-20220323154740146.png)
+    ![image-20220323154740146](./assets/image-20220323154740146.png)
 
 11. 检查设备连接，运行程序。
 
-    ![image-20220323155049251](Android JNI编程笔记.assets/image-20220323155049251.png)
+    ![image-20220323155049251](./assets/image-20220323155049251.png)
 
 12. 程序运行成功，可在屏幕上看到如下内容。
 
-    <img src="Android JNI编程笔记.assets/Screenshot_20220323_163746.png" style="zoom: 33%;" />
+    <img src="./assets/Screenshot_20220323_163746.png" style="zoom: 33%;" />
 
 # 3 代码分析
 
@@ -477,7 +477,7 @@
 
 6. 点击运行程序，即可在Logcat中查看到程序的输出。
 
-    ![image-20220324095400729](Android JNI编程笔记.assets/image-20220324095400729.png)
+    ![image-20220324095400729](./assets/image-20220324095400729.png)
 
 # 5 在新项目中调用生成的库文件
 
@@ -485,19 +485,19 @@
 
 1. File->New->New Project，创建新的工程，选择Empty Activity。
 
-    ![image-20220325093214238](Android JNI编程笔记.assets/image-20220325093214238.png)
+    ![image-20220325093214238](./assets/image-20220325093214238.png)
 
 2. 点击Next进入下一步，设置好工程相关信息。
 
-    ![image-20220325093421406](Android JNI编程笔记.assets/image-20220325093421406.png)
+    ![image-20220325093421406](./assets/image-20220325093421406.png)
 
 3. 点击Finish，完成工程构建。将工程结构切换到Project，并将第5节中生成的动态链接库复制到app->libs下。
 
-    ![image-20220325094025300](Android JNI编程笔记.assets/image-20220325094025300.png)
+    ![image-20220325094025300](./assets/image-20220325094025300.png)
 
 4. 在app->src->main->java下添加和JNI库工程相同的包com.ailee.tutorialsjnilib，并在包下添加第5节中的Java类。
 
-    ![image-20220325094441938](Android JNI编程笔记.assets/image-20220325094441938.png)
+    ![image-20220325094441938](./assets/image-20220325094441938.png)
 
 5. 在app->build.gradle中添加如下内容，使工程能自动查找合适的sdk。
 
@@ -557,11 +557,11 @@
 
     1. Logcat中看到正确输出了测试案例的内容。
 
-        ![image-20220325095720564](Android JNI编程笔记.assets/image-20220325095720564.png)
+        ![image-20220325095720564](./assets/image-20220325095720564.png)
 
     2. 并在Android设备中显示如下内容。
 
-        <img src="Android JNI编程笔记.assets/Screenshot_20220325_095517.png" style="zoom:33%;" />
+        <img src="./assets/Screenshot_20220325_095517.png" style="zoom:33%;" />
 
 # 6 向现有工程中添加第三方库
 
